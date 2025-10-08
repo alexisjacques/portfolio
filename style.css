@@ -1,13 +1,15 @@
-/* Global box sizing */
+/* ===== Base & variables ===== */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* Site-wide accent color */
 :root {
   --color-accent: oklch(65% 50% 0);
+  --color-border: oklch(80% 3% 200);
+  /* cool gray */
+  --color-muted: oklch(45% 0.03 200);
 }
 
 html {
@@ -17,16 +19,11 @@ html {
 body {
   margin: 0;
   max-width: 75ch;
-  /* cap line length but stay responsive */
   margin-inline: auto;
-  /* center column */
   padding-inline: 1rem;
-  /* keep text off edges on small screens */
   font: 100%/1.5 system-ui;
-  /* size/line-height/font */
 }
 
-/* Images are responsive */
 img {
   max-width: 100%;
   height: auto;
@@ -34,74 +31,75 @@ img {
   margin-block: 1rem;
 }
 
-/* Optional: scale side padding a bit on wider screens */
-@media (min-width: 40rem) {
+@media (min-width:40rem) {
   body {
     padding-inline: clamp(1rem, 4vw, 2rem);
   }
 }
 
-/* ---- Navigation ---- */
+/* ===== Typography / hierarchy ===== */
+:where(h1, h2, h3, h4, h5, h6) {
+  line-height: 1.1;
+  text-wrap: balance;
+  margin-block: .6em .4em;
+}
 
-/* Get ul/li out of the way so <a> are direct flex children */
+h1 {
+  font-size: clamp(2rem, 6vw, 4rem);
+  /* ≈400% goal */
+  margin-block: .5em .6em;
+}
+
+h2 {
+  font-size: clamp(1.25rem, 3vw, 1.6rem);
+}
+
+/* ===== Navigation ===== */
 .menu ul,
 .menu li {
   display: contents;
 }
 
-/* Nav container: spacing + subtle divider */
+/* make <a> the flex children */
+
 .menu {
   display: flex;
-  /* flex layout */
   gap: .5rem;
-  /* space between items */
   padding: .25rem 0;
-  /* small vertical breathing room */
   margin-bottom: 1rem;
-  /* separate from content */
-  border-bottom: 1px solid oklch(80% 3% 200);
-  /* cool gray divider */
+  border-bottom: 1px solid var(--color-border);
 }
 
-/* Links: equal width, inherit color, centered text, comfy padding */
 .menu a {
   flex: 1;
-  /* equal widths */
   display: block;
   color: inherit;
-  /* remove default blue */
   text-align: center;
   text-decoration: none;
-  padding: 0.5em;
-  /* recommended spacing */
+  padding: .5em;
 
-  /* Prepare for thick underline without layout jump */
-  --underline-thickness: 0.4em;
+  --underline-thickness: .4em;
   border-bottom: 0 solid transparent;
   transition: border-color 120ms, border-width 120ms, padding-bottom 120ms;
 }
 
-/* Current page: thick bottom border in cool gray, reduced padding-bottom */
 .menu a.current,
 .menu a[aria-current="page"] {
-  border-bottom-color: oklch(80% 3% 200);
+  border-bottom-color: var(--color-border);
   border-bottom-width: var(--underline-thickness);
-  padding-bottom: calc(0.5em - var(--underline-thickness));
+  padding-bottom: calc(.5em - var(--underline-thickness));
   font-weight: 600;
 }
 
-/* Hover/focus: thick bottom border in accent color */
 .menu a:hover,
 .menu a:focus-visible {
   border-bottom-color: var(--color-accent);
   border-bottom-width: var(--underline-thickness);
-  padding-bottom: calc(0.5em - var(--underline-thickness));
+  padding-bottom: calc(.5em - var(--underline-thickness));
   outline: none;
 }
 
-/* --- Contact form (typography + grid layout) --- */
-
-/* 3.1: make controls use the page font */
+/* ===== Contact form ===== */
 input,
 textarea,
 select,
@@ -109,209 +107,83 @@ button {
   font: inherit;
 }
 
-/* The form itself becomes a 2-column grid:
-   - col 1 auto-sizes to label text
-   - col 2 takes the remaining space for the field */
 .contact-form {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 1em 1rem;
-  /* row gap, column gap */
   align-items: start;
 }
 
-/* Each label spans the full row and reuses the parent’s columns via subgrid.
-   This lets the label text sit in column 1 and the input in column 2. */
 .contact-form label {
   display: grid;
   grid-template-columns: subgrid;
-  /* ✨ subgrid magic */
   grid-column: 1 / -1;
-  /* span both columns of the form */
   gap: .5rem 1rem;
 }
 
-/* Put the actual input/textarea/select into column 2 */
 .contact-form label> :is(input, textarea, select) {
   grid-column: 2;
   width: 100%;
-  box-sizing: border-box;
   padding: .6em .8em;
-  border: 1px solid oklch(80% 3% 200);
+  border: 1px solid var(--color-border);
   border-radius: .5rem;
   background: Canvas;
   color: CanvasText;
 }
 
-/* Label text (put it in a <span> inside <label>) sits in column 1 */
 .contact-form label>span {
   grid-column: 1;
   align-self: center;
 }
 
-/* Bigger, resizable message box */
 .contact-form textarea {
   min-block-size: 8rem;
   resize: vertical;
 }
 
-/* Submit button spans the full grid width */
 .contact-form button {
   grid-column: 1 / -1;
   justify-self: start;
-  /* or: end / center / stretch */
   padding: .6em 1em;
   border-radius: .5rem;
-  border: 1px solid oklch(80% 3% 200);
+  border: 1px solid var(--color-border);
   background: var(--color-accent);
-  color: white;
+  color: #fff;
   cursor: pointer;
 }
 
-/* Focus styles for accessibility */
 .contact-form :is(input, textarea, select):focus-visible {
   outline: 3px solid var(--color-accent);
   outline-offset: 2px;
   border-color: var(--color-accent);
 }
 
-/* Fallback if subgrid isn't supported: let label's children participate directly */
+/* Fallback if subgrid columns unsupported */
 @supports not (grid-template-columns: subgrid) {
   .contact-form label {
     display: contents;
   }
 }
 
-/* --- Contact form (typography + grid layout) --- */
-
-/* 3.1: make controls use the page font */
-input,
-textarea,
-select,
-button {
-  font: inherit;
-}
-
-/* The form itself becomes a 2-column grid:
-   - col 1 auto-sizes to label text
-   - col 2 takes the remaining space for the field */
-.contact-form {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 1em 1rem;
-  /* row gap, column gap */
-  align-items: start;
-}
-
-/* Each label spans the full row and reuses the parent’s columns via subgrid.
-   This lets the label text sit in column 1 and the input in column 2. */
-.contact-form label {
-  display: grid;
-  grid-template-columns: subgrid;
-  /* ✨ subgrid magic */
-  grid-column: 1 / -1;
-  /* span both columns of the form */
-  gap: .5rem 1rem;
-}
-
-/* Put the actual input/textarea/select into column 2 */
-.contact-form label> :is(input, textarea, select) {
-  grid-column: 2;
-  width: 100%;
-  box-sizing: border-box;
-  padding: .6em .8em;
-  border: 1px solid oklch(80% 3% 200);
-  border-radius: .5rem;
-  background: Canvas;
-  color: CanvasText;
-}
-
-/* Label text (put it in a <span> inside <label>) sits in column 1 */
-.contact-form label>span {
-  grid-column: 1;
-  align-self: center;
-}
-
-/* Bigger, resizable message box */
-.contact-form textarea {
-  min-block-size: 8rem;
-  resize: vertical;
-}
-
-/* Submit button spans the full grid width */
-.contact-form button {
-  grid-column: 1 / -1;
-  justify-self: start;
-  /* or: end / center / stretch */
-  padding: .6em 1em;
-  border-radius: .5rem;
-  border: 1px solid oklch(80% 3% 200);
-  background: var(--color-accent);
-  color: white;
-  cursor: pointer;
-}
-
-/* Focus styles for accessibility */
-.contact-form :is(input, textarea, select):focus-visible {
-  outline: 3px solid var(--color-accent);
-  outline-offset: 2px;
-  border-color: var(--color-accent);
-}
-
-/* Fallback if subgrid isn't supported: let label's children participate directly */
-@supports not (grid-template-columns: subgrid) {
-  .contact-form label {
-    display: contents;
-  }
-}
-
-/* ---- Step 4: Projects grid & typography ---- */
-
-/* 4.4 Headings: stronger hierarchy + nicer wrapping */
-h1 {
-  font-size: 400%;
-  /* ~4× body text */
-  line-height: 1.1;
-  text-wrap: balance;
-  margin-block: 0.5em 0.6em;
-}
-
-h2,
-h3,
-h4,
-h5,
-h6 {
-  line-height: 1.1;
-  text-wrap: balance;
-  margin-block: 0.6em 0.4em;
-}
-
-/* 4.2 Responsive grid for the project cards */
+/* ===== Projects grid ===== */
 .projects {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
   gap: 1em;
-  /* try 0.75em–1.25em to taste */
   align-items: start;
-
-  /* Define row tracks so subgrid rows align by the tallest item in each row */
   grid-auto-rows: max-content;
 }
 
-/* 4.3 Align contents across columns using subgrid */
 .projects>article {
   display: grid;
   grid-template-rows: subgrid;
-  /* inherit the parent’s row tracks */
+  /* align rows across columns */
   grid-row: span 3;
-  /* each card uses 3 rows of the parent grid */
 }
 
-/* Place each piece on a row and tidy spacing */
 .projects>article>h2 {
   grid-row: 1;
   margin: 0;
-  /* avoid extra top gap */
 }
 
 .projects>article>img {
@@ -319,20 +191,111 @@ h6 {
   width: 100%;
   height: auto;
   display: block;
-  /* Optional: enforce a consistent card image shape
-     aspect-ratio: 4 / 3; object-fit: cover; */
 }
 
 .projects>article>p {
   grid-row: 3;
-  margin-block: 0.5em 0;
+  margin-block: .5em 0;
 }
 
-/* Fallback if a browser doesn't support subgrid */
+/* Fallback if subgrid rows unsupported */
 @supports not (grid-template-rows: subgrid) {
-
-  /* Let the article’s children participate directly in the parent grid */
   .projects>article {
     display: contents;
+  }
+}
+
+/* ===== CV (Profile) page ===== */
+.cv-header {
+  text-align: center;
+  margin-block: .25rem 1.25rem;
+}
+
+.cv-header p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--color-muted);
+}
+
+.cv section {
+  margin-block: 1.5rem;
+}
+
+.cv h2 {
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: .25rem;
+  margin-bottom: .75rem;
+}
+
+.cv address {
+  font-style: normal;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 1rem;
+  align-items: center;
+}
+
+.cv address a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.cv address a:hover,
+.cv address a:focus-visible {
+  border-bottom-color: var(--color-accent);
+  outline: none;
+}
+
+.role {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: .25rem 1rem;
+  margin-top: .75rem;
+}
+
+.role h3 {
+  margin: 0;
+  font-weight: 600;
+}
+
+.role .meta {
+  color: var(--color-muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.cv ul {
+  margin: .35rem 0 1rem;
+  padding-inline-start: 1.25em;
+}
+
+.cv li {
+  margin-block: .25rem;
+}
+
+/* ===== Print ===== */
+@media print {
+  .menu {
+    display: none;
+  }
+
+  body {
+    max-width: none;
+    padding: 0;
+  }
+
+  @page {
+    margin: 1in;
+  }
+
+  .cv section {
+    break-inside: avoid;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: .9em;
   }
 }

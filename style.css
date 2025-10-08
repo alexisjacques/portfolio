@@ -1,6 +1,36 @@
+/* Make padding count inside widths */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
-  /* Set line height to 1.5 times the font size
-	   and use the OS’s UI font as the website font
-	 */
+  margin: 0;
+  /* Limit line length but allow shrinking on small screens */
+  max-width: 50ch;
+  /* try 65–85ch or your instructor’s 100ch */
+  margin-inline: auto;
+  /* center the column */
+  padding-inline: 1rem;
+  /* keep text off edges on small screens */
   font: 100%/1.5 system-ui;
+  /* size/line-height/font */
+}
+
+/* Make all images shrink to fit the column but never stretch past their real size */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  /* removes the little gap below inline images */
+  margin-block: 1rem;
+  /* some breathing room */
+}
+
+/* (Optional) scale side padding a bit on wider screens */
+@media (min-width: 40rem) {
+  body {
+    padding-inline: clamp(1rem, 4vw, 2rem);
+  }
 }

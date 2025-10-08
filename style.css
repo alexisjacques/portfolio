@@ -264,3 +264,75 @@ button {
     display: contents;
   }
 }
+
+/* ---- Step 4: Projects grid & typography ---- */
+
+/* 4.4 Headings: stronger hierarchy + nicer wrapping */
+h1 {
+  font-size: 400%;
+  /* ~4× body text */
+  line-height: 1.1;
+  text-wrap: balance;
+  margin-block: 0.5em 0.6em;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.1;
+  text-wrap: balance;
+  margin-block: 0.6em 0.4em;
+}
+
+/* 4.2 Responsive grid for the project cards */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  gap: 1em;
+  /* try 0.75em–1.25em to taste */
+  align-items: start;
+
+  /* Define row tracks so subgrid rows align by the tallest item in each row */
+  grid-auto-rows: max-content;
+}
+
+/* 4.3 Align contents across columns using subgrid */
+.projects>article {
+  display: grid;
+  grid-template-rows: subgrid;
+  /* inherit the parent’s row tracks */
+  grid-row: span 3;
+  /* each card uses 3 rows of the parent grid */
+}
+
+/* Place each piece on a row and tidy spacing */
+.projects>article>h2 {
+  grid-row: 1;
+  margin: 0;
+  /* avoid extra top gap */
+}
+
+.projects>article>img {
+  grid-row: 2;
+  width: 100%;
+  height: auto;
+  display: block;
+  /* Optional: enforce a consistent card image shape
+     aspect-ratio: 4 / 3; object-fit: cover; */
+}
+
+.projects>article>p {
+  grid-row: 3;
+  margin-block: 0.5em 0;
+}
+
+/* Fallback if a browser doesn't support subgrid */
+@supports not (grid-template-rows: subgrid) {
+
+  /* Let the article’s children participate directly in the parent grid */
+  .projects>article {
+    display: contents;
+  }
+}

@@ -1,36 +1,266 @@
-/* Make padding count inside widths */
+/* Global box sizing */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
+/* Site-wide accent color */
+:root {
+  --color-accent: oklch(65% 50% 0);
+}
+
+html {
+  accent-color: var(--color-accent);
+}
+
 body {
   margin: 0;
-  /* Limit line length but allow shrinking on small screens */
-  max-width: 50ch;
-  /* try 65–85ch or your instructor’s 100ch */
+  max-width: 75ch;
+  /* cap line length but stay responsive */
   margin-inline: auto;
-  /* center the column */
+  /* center column */
   padding-inline: 1rem;
   /* keep text off edges on small screens */
   font: 100%/1.5 system-ui;
   /* size/line-height/font */
 }
 
-/* Make all images shrink to fit the column but never stretch past their real size */
+/* Images are responsive */
 img {
   max-width: 100%;
   height: auto;
   display: block;
-  /* removes the little gap below inline images */
   margin-block: 1rem;
-  /* some breathing room */
 }
 
-/* (Optional) scale side padding a bit on wider screens */
+/* Optional: scale side padding a bit on wider screens */
 @media (min-width: 40rem) {
   body {
     padding-inline: clamp(1rem, 4vw, 2rem);
+  }
+}
+
+/* ---- Navigation ---- */
+
+/* Get ul/li out of the way so <a> are direct flex children */
+.menu ul,
+.menu li {
+  display: contents;
+}
+
+/* Nav container: spacing + subtle divider */
+.menu {
+  display: flex;
+  /* flex layout */
+  gap: .5rem;
+  /* space between items */
+  padding: .25rem 0;
+  /* small vertical breathing room */
+  margin-bottom: 1rem;
+  /* separate from content */
+  border-bottom: 1px solid oklch(80% 3% 200);
+  /* cool gray divider */
+}
+
+/* Links: equal width, inherit color, centered text, comfy padding */
+.menu a {
+  flex: 1;
+  /* equal widths */
+  display: block;
+  color: inherit;
+  /* remove default blue */
+  text-align: center;
+  text-decoration: none;
+  padding: 0.5em;
+  /* recommended spacing */
+
+  /* Prepare for thick underline without layout jump */
+  --underline-thickness: 0.4em;
+  border-bottom: 0 solid transparent;
+  transition: border-color 120ms, border-width 120ms, padding-bottom 120ms;
+}
+
+/* Current page: thick bottom border in cool gray, reduced padding-bottom */
+.menu a.current,
+.menu a[aria-current="page"] {
+  border-bottom-color: oklch(80% 3% 200);
+  border-bottom-width: var(--underline-thickness);
+  padding-bottom: calc(0.5em - var(--underline-thickness));
+  font-weight: 600;
+}
+
+/* Hover/focus: thick bottom border in accent color */
+.menu a:hover,
+.menu a:focus-visible {
+  border-bottom-color: var(--color-accent);
+  border-bottom-width: var(--underline-thickness);
+  padding-bottom: calc(0.5em - var(--underline-thickness));
+  outline: none;
+}
+
+/* --- Contact form (typography + grid layout) --- */
+
+/* 3.1: make controls use the page font */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+/* The form itself becomes a 2-column grid:
+   - col 1 auto-sizes to label text
+   - col 2 takes the remaining space for the field */
+.contact-form {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1em 1rem;
+  /* row gap, column gap */
+  align-items: start;
+}
+
+/* Each label spans the full row and reuses the parent’s columns via subgrid.
+   This lets the label text sit in column 1 and the input in column 2. */
+.contact-form label {
+  display: grid;
+  grid-template-columns: subgrid;
+  /* ✨ subgrid magic */
+  grid-column: 1 / -1;
+  /* span both columns of the form */
+  gap: .5rem 1rem;
+}
+
+/* Put the actual input/textarea/select into column 2 */
+.contact-form label> :is(input, textarea, select) {
+  grid-column: 2;
+  width: 100%;
+  box-sizing: border-box;
+  padding: .6em .8em;
+  border: 1px solid oklch(80% 3% 200);
+  border-radius: .5rem;
+  background: Canvas;
+  color: CanvasText;
+}
+
+/* Label text (put it in a <span> inside <label>) sits in column 1 */
+.contact-form label>span {
+  grid-column: 1;
+  align-self: center;
+}
+
+/* Bigger, resizable message box */
+.contact-form textarea {
+  min-block-size: 8rem;
+  resize: vertical;
+}
+
+/* Submit button spans the full grid width */
+.contact-form button {
+  grid-column: 1 / -1;
+  justify-self: start;
+  /* or: end / center / stretch */
+  padding: .6em 1em;
+  border-radius: .5rem;
+  border: 1px solid oklch(80% 3% 200);
+  background: var(--color-accent);
+  color: white;
+  cursor: pointer;
+}
+
+/* Focus styles for accessibility */
+.contact-form :is(input, textarea, select):focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+  border-color: var(--color-accent);
+}
+
+/* Fallback if subgrid isn't supported: let label's children participate directly */
+@supports not (grid-template-columns: subgrid) {
+  .contact-form label {
+    display: contents;
+  }
+}
+
+/* --- Contact form (typography + grid layout) --- */
+
+/* 3.1: make controls use the page font */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+/* The form itself becomes a 2-column grid:
+   - col 1 auto-sizes to label text
+   - col 2 takes the remaining space for the field */
+.contact-form {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1em 1rem;
+  /* row gap, column gap */
+  align-items: start;
+}
+
+/* Each label spans the full row and reuses the parent’s columns via subgrid.
+   This lets the label text sit in column 1 and the input in column 2. */
+.contact-form label {
+  display: grid;
+  grid-template-columns: subgrid;
+  /* ✨ subgrid magic */
+  grid-column: 1 / -1;
+  /* span both columns of the form */
+  gap: .5rem 1rem;
+}
+
+/* Put the actual input/textarea/select into column 2 */
+.contact-form label> :is(input, textarea, select) {
+  grid-column: 2;
+  width: 100%;
+  box-sizing: border-box;
+  padding: .6em .8em;
+  border: 1px solid oklch(80% 3% 200);
+  border-radius: .5rem;
+  background: Canvas;
+  color: CanvasText;
+}
+
+/* Label text (put it in a <span> inside <label>) sits in column 1 */
+.contact-form label>span {
+  grid-column: 1;
+  align-self: center;
+}
+
+/* Bigger, resizable message box */
+.contact-form textarea {
+  min-block-size: 8rem;
+  resize: vertical;
+}
+
+/* Submit button spans the full grid width */
+.contact-form button {
+  grid-column: 1 / -1;
+  justify-self: start;
+  /* or: end / center / stretch */
+  padding: .6em 1em;
+  border-radius: .5rem;
+  border: 1px solid oklch(80% 3% 200);
+  background: var(--color-accent);
+  color: white;
+  cursor: pointer;
+}
+
+/* Focus styles for accessibility */
+.contact-form :is(input, textarea, select):focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+  border-color: var(--color-accent);
+}
+
+/* Fallback if subgrid isn't supported: let label's children participate directly */
+@supports not (grid-template-columns: subgrid) {
+  .contact-form label {
+    display: contents;
   }
 }

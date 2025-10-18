@@ -1,3 +1,38 @@
+/* --- Step 4.1: Automatic dark mode --- */
+
+/* Opt in to light & dark; form controls, scrollbars, etc. adapt too */
+html {
+  color-scheme: light dark;
+}
+
+/* Use system colors so they flip with the scheme */
+body {
+  background: Canvas;
+  /* auto: white in light, near-black in dark */
+  color: CanvasText;
+  /* auto: black in light, white in dark */
+}
+
+/* Make your existing variables adaptive (replace your current values) */
+:root {
+  --color-accent: oklch(65% 50% 0);
+  /* tweak later if you want */
+  --color-border: color-mix(in oklch, CanvasText 20%, Canvas);
+  /* subtle hairline */
+  --color-muted: color-mix(in oklch, CanvasText 60%, Canvas);
+  /* muted text */
+}
+
+/* Optional: nudge accent brighter in dark mode for contrast */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-accent: oklch(75% 50% 20);
+  }
+}
+
+
+
+
 /* ===== Base & variables ===== */
 *,
 *::before,
@@ -298,4 +333,31 @@ button {
     content: " (" attr(href) ")";
     font-size: .9em;
   }
+}
+
+/* Top-right theme switch */
+.color-scheme {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: .85rem;
+  color: inherit;
+  background: Canvas;
+  color: CanvasText;
+  border: 1px solid var(--color-border);
+  border-radius: .5rem;
+  padding: .25rem .5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.color-scheme select {
+  font: inherit;
+  /* you already set this site-wide, but safe here */
+  background: Canvas;
+  color: CanvasText;
+  border: 1px solid var(--color-border);
+  border-radius: .35rem;
+  padding: .2rem .4rem;
 }

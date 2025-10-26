@@ -1,0 +1,62 @@
+[
+	{
+		"title": "Food processing vs Protein Visualization",
+		"image": "../proteinvsprocessed.png",
+		"description": "Data transormations from nutrition data set to visualize the negative correlation between level of food processing and protein density in foods"
+	},
+	{
+		"title": "Dual Stories in Visualization: NYPD Bias vs Fairness",
+		"image": "../project2preview.png",
+		"description": "Seeking to tell opposing stories with the same dataset.  focusing on the number of reports can tell one story, while focusing on the composition can tell another. "
+	},
+	{
+		"title": "NLP Restauraunt Cuisine Identifier",
+		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
+		"description": "Trained a Multinomial Logistic Regression model that achieved 81% accuracy on test set for 15-class cuisine prediction to promote customer satisfaction"
+	},
+	{
+		"title": "Weather Analysis",
+		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
+		"description": "Performed distributed PCA to extract seasonal modes, and clustered stations by thermal signature for interactive geospatial and temporal visualizations to detect potential utility load spikes and support resilience planning"
+	},
+	{
+		"title": "Book Recommendation System",
+		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
+		"description": "Developed a book recommendation system a regularized user/item-bias model with stochastic gradient descent"
+	},
+	{
+		"title": "Ethics in Machine Learning for Skincare",
+		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
+		"description": "Ethical considerations at each stage of development for a skincare recommendation machine learning system."
+	},
+	{
+		"title": "Biomedical Image Classifier",
+		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
+		"description": "Created a convolutional neural network to classify biomedical images of cell nuclei with 98% accuracy after addressing class imbalance with data augmentation and hyperparameter tuning."
+	},
+	{
+		"title": "More projects",
+		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
+		"description": "Delectus magni, vel, quod mollitia hic rem temporibus, sint doloribus tenetur qui dolores tempore quisquam fuga nobis recusandae molestiae ipsum nostrum maxime eaque dicta aperiam eum quas beatae. At, neque."
+	},
+	{
+		"title": "They just keep going",
+		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
+		"description": "Vitae quos laudantium officiis rerum, accusamus delectus aspernatur quas nulla, magni sed, excepturi saepe incidunt laboriosam alias at aliquam atque quisquam autem nesciunt. Minus, reprehenderit odit nam illo natus aspernatur?"
+	},
+	{
+		"title": "So so many",
+		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
+		"description": "Aut voluptatem sint atque corrupti accusamus necessitatibus possimus et, itaque nulla id deleniti nemo repellendus asperiores molestias laudantium, mollitia ad dicta. Laboriosam, itaque. Quos corporis, perferendis natus officiis beatae qui."
+	},
+	{
+		"title": "Who really wants to see all these?",
+		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
+		"description": "Quos, recusandae, sit rerum velit nostrum nihil quisquam tempora repellat sed quibusdam facilis. Assumenda quaerat ab, nesciunt odio facere sit, ipsa necessitatibus tempora, maiores commodi sed quae provident deserunt at?"
+	},
+	{
+		"title": "If you've made it this far, please hire me",
+		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
+		"description": "Tempore, eveniet minus velit, earum aperiam necessitatibus repellendus provident accusamus illum officiis doloribus, eum saepe est aut numquam distinctio pariatur natus totam repellat. Numquam nulla libero sapiente magnam nostrum ex."
+	}
+]

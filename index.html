@@ -2,20 +2,31 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Alexis: Personal site and portfolio</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./style.css" />
 </head>
-
-<script type="module" src="./global.js"></script>
 
 <body>
 
-    <h1> my name is alexis</h1>
-    <p> I like snowboarding! here is me with some friends in Utah last season. check out the step-on bindings ♡ </p>
+    <!-- nav is injected by global.js -->
 
-    <img src='images/utahsnowboarding.jpg' alt="Alexis snowboarding with friends in Utah">
+    <h1>Welcome</h1>
+
+    <section id="latest">
+        <h2>Latest projects</h2>
+        <div class="projects"></div> <!-- ← required -->
+    </section>
+
+    <section id="github">
+        <h2>GitHub</h2>
+        <div id="profile-stats" aria-live="polite"></div> <!-- ← required -->
+    </section>
+
+    <!-- Scripts: load each once, in this order -->
+    <script type="module" src="./global.js"></script>
+    <script type="module" src="./index.js"></script>
 </body>
 
 </html>

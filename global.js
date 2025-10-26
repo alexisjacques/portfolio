@@ -103,3 +103,112 @@ media.addEventListener?.('change', () => {
     const auto = [...select.options].find(o => o.value === 'light dark');
     if (auto) auto.textContent = autoLabel();
 });
+
+
+
+
+//Setting Up the Function
+//Start by defining an asynchronous function that will fetch your project data. Use the following snippet to get started:
+// Step 1.2 — fetch a JSON file (e.g., "projects.json") from the site root
+export async function fetchJSON(url) {
+    try {
+        // Resolve relative to global.js (site root)
+        const abs = new URL(url, import.meta.url);
+
+        // 1) Fetch
+        const response = await fetch(abs);
+        console.log(response); // inspect in DevTools
+
+        // 2) Validate
+        if (!response.ok) {
+            throw new Error(`Failed to fetch projects: ${response.status} ${response.statusText}`);
+        }
+
+        // 3) Parse
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching or parsing JSON data:', error);
+        return null; // so callers can check for failure
+    }
+}
+
+// In global.js (near the bottom)
+if (document.querySelector('.projects')) {
+    const data = await fetchJSON('projects.json'); // place projects.json in the site root
+    console.log('projects data:', data);
+}
+
+// Step 1.4 — render a list of projects into a container
+export function renderProjects(projects, containerElement, headingLevel = 'h2') {
+    // Validate container
+    if (!(containerElement instanceof Element)) {
+        console.warn('renderProjects: invalid containerElement', containerElement);
+        return;
+    }
+
+    // Normalize data to an array
+    if (!projects) {
+        containerElement.innerHTML = '<p>Could not load projects.</p>';
+        return;
+    }
+    const list = Array.isArray(projects) ? projects : [projects];
+
+    // Validate heading tag
+    const tag = String(headingLevel).toLowerCase();
+    const validHeadings = new Set(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']);
+    const H = validHeadings.has(tag) ? tag : 'h2';
+
+    // Clear old content
+    containerElement.innerHTML = '';
+
+    if (list.length === 0) {
+        containerElement.innerHTML = '<p>No projects yet.</p>';
+        return;
+    }
+
+    for (const p of list) {
+        const article = document.createElement('article');
+
+        // Heading (optionally linkable if p.link provided)
+        const h = document.createElement(H);
+        const titleText = p?.title ?? 'Untitled';
+        if (p?.link) {
+            const a = document.createElement('a');
+            a.href = p.link;
+            a.textContent = titleText;
+            // Open external links in a new tab
+            try {
+                const isExternal = new URL(a.href, location.href).host !== location.host;
+                if (isExternal) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
+            } catch { }
+            h.append(a);
+        } else {
+            h.textContent = titleText;
+        }
+        article.append(h);
+
+        // Image (optional)
+        if (p?.image) {
+            const img = document.createElement('img');
+            img.src = p.image;
+            img.alt = p?.alt ?? titleText;
+            img.loading = 'lazy';
+            article.append(img);
+        }
+
+        // Description (optional)
+        if (p?.description) {
+            const para = document.createElement('p');
+            para.textContent = p.description;
+            article.append(para);
+        }
+
+        containerElement.append(article);
+    }
+}
+
+// Fetch public GitHub user data (unauthenticated; rate limit ~60/hour)
+export async function fetchGitHubData(username) {
+    return fetchJSON(`https://api.github.com/users/${encodeURIComponent(username)}`);
+}

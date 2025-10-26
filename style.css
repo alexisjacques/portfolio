@@ -361,3 +361,29 @@ button {
   border-radius: .35rem;
   padding: .2rem .4rem;
 }
+
+.projects-title .count {
+  color: var(--color-muted);
+  font-weight: 400;
+  font-size: 0.85em;
+}
+
+#profile-stats .stats {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: .25rem 1rem;
+}
+
+#profile-stats dt {
+  color: var(--color-muted);
+}
+
+#profile-stats dd {
+  margin: 0;
+}
+
+#profile-stats .stats>div {
+  display: contents;
+}
+
+/* keeps dl semantics while using grid */

@@ -386,4 +386,199 @@ button {
   display: contents;
 }
 
-/* keeps dl semantics while using grid */
+/* SVG pie chart */
+#projects-pie-plot {
+  max-width: 20em;
+  /* keep it from getting huge */
+  width: 100%;
+  /* shrink on small screens */
+  height: auto;
+  /* preserve aspect ratio */
+  display: block;
+  /* removes inline SVG baseline gap */
+  margin-block: 2em;
+  overflow: visible;
+  /* lets labels/ticks hang outside later */
+}
+
+/* SVG pie labels */
+#projects-pie-plot text.label {
+  font: 5px/1.1 system-ui;
+  /* ↓ was 12px */
+  fill: CanvasText;
+}
+
+
+
+
+/* Pie legend */
+.legend {
+  list-style: none;
+  margin: 1rem 0;
+  padding: .75rem;
+  border: 1px solid oklch(80% 3% 200);
+  border-radius: .5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  gap: .75rem 1rem;
+  /* row gap, column gap */
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.legend .swatch {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  aspect-ratio: 1 / 1;
+  background: var(--color);
+  /* set via inline CSS variable */
+  border: 1px solid rgba(0, 0, 0, .15);
+  border-radius: .25em;
+  /* use 50% for circles */
+}
+
+.legend em {
+  font-style: normal;
+  color: oklch(45% 0.03 200);
+}
+
+/* Layout: pie + legend side by side */
+.pie-container {
+  display: flex;
+  align-items: flex-start;
+  /* top-align items */
+  gap: 1rem 2rem;
+  /* row gap, column gap */
+  flex-wrap: wrap;
+  /* stack on narrow screens */
+}
+
+/* Keep the SVG a comfy size; don’t let it stretch oddly */
+.pie-container #projects-pie-plot {
+  max-width: 20em;
+  /* you can tweak this */
+  width: 100%;
+  height: auto;
+  flex: 0 0 auto;
+  /* keep SVG its intrinsic width */
+  margin-block: 0;
+  /* override any big margins if needed */
+}
+
+/* Smooth changes and allow scale from each slice center */
+#projects-pie-plot path.slice {
+  transition: opacity 300ms, transform 300ms;
+  transform-box: fill-box;
+  /* so transform-origin works in SVG */
+  transform-origin: center;
+  /* scale around slice center */
+}
+
+#projects-pie-plot path.slice {
+  fill: var(--color);
+  cursor: pointer;
+  transition: opacity 300ms, transform 300ms;
+}
+
+#projects-pie-plot:has(path.slice:hover) path.slice:not(:hover) {
+  opacity: .5;
+}
+
+.selected {
+  --color: oklch(60% 45% 0) !important;
+}
+
+/* Slight pop on the hovered slice (optional) */
+#projects-pie-plot path.slice:hover {
+  transform: scale(1.03);
+}
+
+/* When the SVG has a hovered slice, dim the rest */
+#projects-pie-plot:has(path.slice:hover) path.slice:not(:hover) {
+  opacity: 0.5;
+}
+
+/* Make slices & legend items obviously interactive */
+#projects-pie-plot path.slice,
+.legend .legend-item {
+  cursor: pointer;
+}
+
+/* We drive all slice fills via the --color var so we can override it on selection */
+#projects-pie-plot path.slice {
+  transition: opacity 300ms, transform 300ms;
+  transform-box: fill-box;
+  transform-origin: center;
+  fill: var(--color);
+  /* <-- important */
+}
+
+/* Slight pop on hover (optional) */
+#projects-pie-plot path.slice:hover {
+  transform: scale(1.03);
+}
+
+/* Selected look (distinct color); !important to override inline style precedence */
+.selected {
+  --color: oklch(60% 45% 0) !important;
+  /* pick any strong accent */
+}
+
+/* If you kept the :has() hover fade from earlier, keep it too: */
+#projects-pie-plot:has(path.slice:hover) path.slice:not(:hover) {
+  opacity: 0.5;
+}
+
+/* JS fallback dim class (from earlier step) still fine to keep */
+#projects-pie-plot path.slice.dim {
+  opacity: 0.5;
+}
+
+
+
+/* Let the legend take remaining width */
+.pie-container .legend {
+  flex: 1;
+  /* fills available horizontal space */
+  min-inline-size: 12rem;
+  /* prevents it from getting too skinny */
+}
+
+/* On wider screens, keep in one row; on small, stack */
+@media (min-width: 40rem) {
+  .pie-container {
+    flex-wrap: nowrap;
+  }
+}
+
+@media (max-width: 39.999rem) {
+  .pie-container {
+    align-items: center;
+  }
+
+  /* nicer when stacked */
+  .pie-container .legend {
+    width: 100%;
+  }
+}
+
+/* search bar styling */
+.searchBar {
+  width: 100%;
+  max-width: 28rem;
+  padding: .55rem .75rem;
+  margin-block: .25rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: .5rem;
+  background: Canvas;
+  color: CanvasText;
+}
+
+.searchBar::placeholder {
+  color: var(--color-muted);
+}

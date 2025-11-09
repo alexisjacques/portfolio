@@ -6,6 +6,7 @@ const pages = [
     { url: "projects/", title: "Projects" },
     { url: "contact/", title: "Contact" },
     { url: "profile/", title: "Profile" },
+    { url: "meta/", title: "Meta" },
     { url: "https://github.com/alexisjacques", title: "GitHub" }, // external example
 ];
 

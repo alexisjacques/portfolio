@@ -9,19 +9,44 @@
 </head>
 
 <body>
-  <header>
-    <nav>
-      <a href="../index.html">Home</a>
-      <a href="../projects/index.html">Projects</a>
-      <a href="index.html">Meta</a>
-    </nav>
-  </header>
+  <script type="module" src="../global.js"></script>
 
   <main>
     <h1>Code Analysis</h1>
     <p>This page provides statistics and visualizations about the codebase of this portfolio website.</p>
+
+    <section id="stats"></section>
+
+    <h2>Commits by time of day</h2>
+    <div id="chart"></div>
+
+    <p id="selection-count">No commits selected</p>
+
+    <h3>Language Breakdown</h3>
+    <dl id="language-breakdown" class="stats"></dl>
+
+    <dl id="commit-tooltip" class="info tooltip" hidden>
+      <dt>Commit</dt>
+      <dd>
+        <a href="" id="commit-link" target="_blank"></a>
+      </dd>
+
+      <dt>Date</dt>
+      <dd id="commit-date"></dd>
+
+      <dt>Time</dt>
+      <dd id="commit-time"></dd>
+
+      <dt>Author</dt>
+      <dd id="commit-author"></dd>
+
+      <dt>Lines edited</dt>
+      <dd id="commit-lines"></dd>
+    </dl>
   </main>
-  <script src="main.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script type="module" src="main.js"></script>
 </body>
 
 </html>

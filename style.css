@@ -582,3 +582,124 @@ button {
 .searchBar::placeholder {
   color: var(--color-muted);
 }
+
+/* Stats display for meta page */
+.stats {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: .25rem 1rem;
+  margin-block: 2rem;
+}
+
+.stats dt {
+  color: var(--color-muted);
+  font-weight: 600;
+}
+
+.stats dd {
+  margin: 0;
+}
+
+/* Scatterplot chart styling */
+#chart {
+  margin-block: 2rem;
+}
+
+#chart svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Gridlines styling - make them subtle */
+.gridlines line {
+  stroke: var(--color-border);
+  stroke-opacity: 0.3;
+}
+
+.gridlines path {
+  stroke: none;
+}
+
+/* Circle hover effects */
+circle {
+  transition: 200ms;
+  transform-origin: center;
+  transform-box: fill-box;
+  cursor: pointer;
+}
+
+circle:hover {
+  transform: scale(1.5);
+}
+
+/* Info dl layout */
+dl.info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1rem;
+  transition-duration: 500ms;
+  transition-property: opacity, visibility;
+}
+
+dl.info dt {
+  color: var(--color-muted);
+  font-weight: 600;
+}
+
+dl.info dd {
+  margin: 0;
+}
+
+dl.info[hidden]:not(:hover, :focus-within) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Tooltip styling */
+.tooltip {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  pointer-events: none;
+  z-index: 1000;
+  max-width: 400px;
+}
+
+/* Dark mode support for tooltip */
+@media (prefers-color-scheme: dark) {
+  .tooltip {
+    background-color: rgba(30, 30, 30, 0.95);
+  }
+}
+
+/* Brush selection styling */
+@keyframes marching-ants {
+  to {
+    stroke-dashoffset: -8;
+  }
+}
+
+.selection {
+  fill-opacity: 0.1;
+  stroke: black;
+  stroke-opacity: 0.7;
+  stroke-dasharray: 5 3;
+  animation: marching-ants 2s linear infinite;
+}
+
+/* Selected dots */
+circle.selected {
+  fill: #ff6b6b;
+}
+
+/* Selection count */
+#selection-count {
+  margin-block: 1rem;
+  font-weight: 600;
+  color: var(--color-muted);
+}

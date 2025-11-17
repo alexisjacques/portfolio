@@ -1,18 +1,38 @@
 [
 	{
-		"title": "Food processing vs Protein Visualization",
+		"title": "Interactive Bike Visualization",
 		"year": 2025,
-		"image": "../proteinvsprocessed.png",
-		"description": "Data transormations from nutrition data set to visualize the negative correlation between level of food processing and protein density in foods"
+		"image": "./bikevizpic.png",
+		"description": "This interactive visualization allows users to explore bike usage patterns in a city over time. Users can filter data by date, time of day, and bike station to see trends in bike rentals and returns. The visualization highlights peak usage times and popular routes, providing insights into urban mobility.",
+		"link": "https://alexisjacques.github.io/Bike-Visualization/",
+		"cta": "View Project"
 	},
 	{
-		"title": "Dual Stories in Visualization: NYPD Bias vs Fairness",
+		"title": "Interactive Visualization: Global GDP Trends",
 		"year": 2025,
-		"image": "../project2preview.png",
-		"description": "Seeking to tell opposing stories with the same dataset.  focusing on the number of reports can tell one story, while focusing on the composition can tell another. "
+		"image": "./GDPinteractiveviz.png",
+		"description": "This interactive visualization intends to compare the GDP per capita across different countries from years 1960–2020. It highlights the economic growth patterns, major events such as the 2008 global recession, and country-specific events as well such as Rwandan Genocide. ",
+		"link": "https://alexisjacques.github.io/Global-GDP-Visualization/",
+		"cta": "View Project"
 	},
 	{
-		"title": "NLP Restauraunt Cuisine Identifier",
+		"title": "Simple Visualization: Food processing vs Protein Visualization",
+		"year": 2025,
+		"image": "./proteinvsprocessed.png",
+		"description": "Data transormations from nutrition data set to visualize the negative correlation between level of food processing and protein density in foods",
+		"link": "https://alexisjacques.github.io/protein-vs-processed-foods/",
+		"cta": "View Project"
+	},
+	{
+		"title": "Deceptive Visualization, Dual Stories: NYPD Bias vs Fairness",
+		"year": 2025,
+		"image": "./project2stance2.png",
+		"description": "Seeking to tell opposing stories with the same dataset.  focusing on the number of reports can tell one story, while focusing on the composition can tell another. ",
+		"url": "https://alexisjacques.github.io/project2/",
+		"cta": "View Project"
+	},
+	{
+		"title": "NLP Restaurant Cuisine Identifier",
 		"year": 2024,
 		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
 		"description": "Trained a Multinomial Logistic Regression model that achieved 81% accuracy on test set for 15-class cuisine prediction to promote customer satisfaction"

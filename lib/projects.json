@@ -3,7 +3,7 @@
 		"title": "SLP Helper",
 		"year": 2025,
 		"image": "./slptrackerimage.png",
-		"description": "SLP Helper is a web application designed to generate therapy orders and track productivity ratings for SLPs (speech-language pathologists) working in skilled nursing facilities. It aims to streamline the documentation process and enhance the clinician's efficiency.",
+		"description": "SLP Helper is a web application designed to help medical SLPs (speech-language pathologists) generate therapy orders and calculate their daily productivity. It aims to streamline the documentation process and enhance the clinician's efficiency.",
 		"link": "https://alexisjacques.github.io/SLP-helper/",
 		"cta": "View Project"
 	},

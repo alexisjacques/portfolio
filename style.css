@@ -241,44 +241,72 @@ button {
 }
 
 /* ===== CV (Profile) page ===== */
+.cv {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: color-mix(in oklch, Canvas 97%, CanvasText);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px color-mix(in oklch, CanvasText 8%, transparent);
+}
+
 .cv-header {
   text-align: center;
-  margin-block: .25rem 1.25rem;
+  margin-block: 0 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid var(--color-accent);
+}
+
+.cv-header h1 {
+  margin: 0 0 0.5rem;
+  font-size: 2.5rem;
+  letter-spacing: -0.02em;
 }
 
 .cv-header p {
   margin: 0;
-  font-size: 1.1rem;
-  color: var(--color-muted);
+  font-size: 1.25rem;
+  color: var(--color-accent);
+  font-weight: 500;
 }
 
 .cv section {
-  margin-block: 1.5rem;
+  margin-block: 2rem;
 }
 
 .cv h2 {
-  border-bottom: 1px solid var(--color-border);
-  padding-bottom: .25rem;
-  margin-bottom: .75rem;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+  border-bottom: none;
+  margin-bottom: 1rem;
+  padding-bottom: 0;
 }
 
 .cv address {
   font-style: normal;
   display: flex;
   flex-wrap: wrap;
-  gap: .5rem 1rem;
-  align-items: center;
+  gap: 0.75rem;
+  justify-content: center;
 }
 
 .cv address a {
   color: inherit;
   text-decoration: none;
-  border-bottom: 1px solid var(--color-border);
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  background: color-mix(in oklch, var(--color-accent) 15%, transparent);
+  border: 1px solid color-mix(in oklch, var(--color-accent) 30%, transparent);
+  transition: all 0.2s ease;
 }
 
 .cv address a:hover,
 .cv address a:focus-visible {
-  border-bottom-color: var(--color-accent);
+  background: var(--color-accent);
+  color: Canvas;
+  transform: translateY(-2px);
   outline: none;
 }
 
@@ -286,28 +314,48 @@ button {
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: baseline;
-  gap: .25rem 1rem;
-  margin-top: .75rem;
+  gap: 0.25rem 1rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: color-mix(in oklch, CanvasText 3%, Canvas);
+  border-radius: 8px;
+  border-left: 3px solid var(--color-accent);
 }
 
 .role h3 {
   margin: 0;
   font-weight: 600;
+  font-size: 1.05rem;
 }
 
 .role .meta {
   color: var(--color-muted);
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
+  font-size: 0.9rem;
 }
 
 .cv ul {
-  margin: .35rem 0 1rem;
-  padding-inline-start: 1.25em;
+  margin: 0.75rem 0 1rem;
+  padding-inline-start: 1.5em;
 }
 
 .cv li {
-  margin-block: .25rem;
+  margin-block: 0.5rem;
+  line-height: 1.5;
+}
+
+.cv li::marker {
+  color: var(--color-accent);
+}
+
+.cv section:last-of-type p {
+  line-height: 1.4;
+  margin: 0.3rem 0;
+}
+
+.cv section:last-of-type strong {
+  color: var(--color-accent);
 }
 
 /* ===== Print ===== */

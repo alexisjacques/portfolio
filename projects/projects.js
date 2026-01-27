@@ -51,7 +51,7 @@ const norm = (s) =>
         if (!container) throw new Error('Missing .projects container');
 
         // Load projects (from /projects/ go up one level to /lib/)
-        const allProjects = await fetchJSON('../lib/projects.json');
+        const allProjects = await fetchJSON('./lib/projects.json');
         if (!Array.isArray(allProjects)) {
             container.innerHTML = '<p>Could not load projects.</p>';
             return;

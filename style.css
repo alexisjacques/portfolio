@@ -456,6 +456,8 @@ button {
   /* row gap, column gap */
   flex-wrap: wrap;
   /* stack on narrow screens */
+  margin-bottom: 2rem;
+  /* space between pie chart and projects */
 }
 
 /* Keep the SVG a comfy size; don’t let it stretch oddly */

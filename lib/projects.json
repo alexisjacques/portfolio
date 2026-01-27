@@ -2,7 +2,7 @@
 	{
 		"title": "SLP Helper",
 		"year": 2025,
-		"image": "./slptrackerimage.png",
+		"image": "slptrackerimage.png",
 		"description": "SLP Helper is a web application designed to help medical SLPs (speech-language pathologists) generate therapy orders and calculate their daily productivity. It aims to streamline the documentation process and enhance the clinician's efficiency.",
 		"link": "https://alexisjacques.github.io/SLP-helper/",
 		"cta": "View Project"
@@ -10,7 +10,7 @@
 	{
 		"title": "Spotify Analytics Dashboard",
 		"year": 2025,
-		"image": "./spotify-piechart.png",
+		"image": "spotify-piechart.png",
 		"description": "This interactive dashboard visually explores Spotify audio trends and artist comparisons, enabling insights into optimal release timing and promotion strategies via a storytelling user experience.",
 		"link": "https://dsc209finalproject.github.io/Final-Project/",
 		"cta": "View Project"
@@ -18,7 +18,7 @@
 	{
 		"title": "Interactive Bike Visualization",
 		"year": 2025,
-		"image": "./bikevizpic.png",
+		"image": "bikevizpic.png",
 		"description": "The visualization highlights peak bicycle rental usage times and popular routes, providing insights into urban mobility.",
 		"link": "https://alexisjacques.github.io/Bike-Visualization/",
 		"cta": "View Project"
@@ -26,7 +26,7 @@
 	{
 		"title": "Interactive Visualization: Global GDP Trends",
 		"year": 2025,
-		"image": "./GDPinteractiveviz.png",
+		"image": "GDPinteractiveviz.png",
 		"description": "This interactive visualization intends to compare the GDP per capita across different countries from years 1960–2020. It highlights the economic growth patterns, major events such as the 2008 global recession, and country-specific events as well such as Rwandan Genocide. ",
 		"link": "https://alexisjacques.github.io/Global-GDP-Visualization/",
 		"cta": "View Project"
@@ -34,7 +34,7 @@
 	{
 		"title": "Simple Visualization: Food processing vs Protein Visualization",
 		"year": 2025,
-		"image": "./proteinvsprocessed.png",
+		"image": "proteinvsprocessed.png",
 		"description": "Data transformations from nutrition data set to visualize the negative correlation between level of food processing and protein density in foods",
 		"link": "https://alexisjacques.github.io/protein-vs-processed-foods/",
 		"cta": "View Project"
@@ -42,7 +42,7 @@
 	{
 		"title": "Deceptive Visualization, Dual Stories: NYPD Bias vs Fairness",
 		"year": 2025,
-		"image": "./project2stance2.png",
+		"image": "project2stance2.png",
 		"description": "Seeking to tell opposing stories with the same dataset.  focusing on the number of reports can tell one story, while focusing on the composition can tell another. ",
 		"link": "https://alexisjacques.github.io/project2/",
 		"cta": "View Project"
@@ -50,9 +50,9 @@
 	{
 		"title": "Ethical Considerations in Machine Learning for Skincare Recommendation",
 		"year": 2024,
-		"image": "./skincareimage.png",
+		"image": "skincareimage.png",
 		"description": "Ethical considerations at each stage of development for a skincare recommendation machine learning system.",
-		"link": "./SkincareMLDS.pdf",
+		"link": "SkincareMLDS.pdf",
 		"cta": "View PDF"
 	}
 ]

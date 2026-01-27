@@ -176,7 +176,8 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
         const titleText = p?.title ?? 'Untitled';
         if (p?.link) {
             const a = document.createElement('a');
-            a.href = p.link;
+            // Resolve relative paths against site root; leave absolute URLs unchanged
+            a.href = p.link.startsWith('http') ? p.link : new URL(p.link, ROOT).href;
             a.textContent = titleText;
             // Open external links in a new tab
             try {
@@ -192,7 +193,8 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
         // Image (optional)
         if (p?.image) {
             const img = document.createElement('img');
-            img.src = p.image;
+            // Resolve relative paths against site root; leave absolute URLs unchanged
+            img.src = p.image.startsWith('http') ? p.image : new URL(p.image, ROOT).href;
             img.alt = p?.alt ?? titleText;
             img.loading = 'lazy';
             article.append(img);

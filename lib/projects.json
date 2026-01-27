@@ -32,14 +32,6 @@
 		"cta": "View Project"
 	},
 	{
-		"title": "Simple Visualization: Food processing vs Protein Visualization",
-		"year": 2025,
-		"image": "proteinvsprocessed.png",
-		"description": "Data transformations from nutrition data set to visualize the negative correlation between level of food processing and protein density in foods",
-		"link": "https://alexisjacques.github.io/protein-vs-processed-foods/",
-		"cta": "View Project"
-	},
-	{
 		"title": "Deceptive Visualization, Dual Stories: NYPD Bias vs Fairness",
 		"year": 2025,
 		"image": "project2stance2.png",

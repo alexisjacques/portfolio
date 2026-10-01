@@ -214,6 +214,11 @@ button {
   grid-template-rows: subgrid;
   /* align rows across columns */
   grid-row: span 3;
+  /* card styling so each project's title/image/description read as one unit */
+  padding: 1em;
+  background: color-mix(in oklch, Canvas 97%, CanvasText);
+  border: 1px solid color-mix(in oklch, CanvasText 10%, transparent);
+  border-radius: 12px;
 }
 
 .projects>article>h2 {

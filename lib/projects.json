@@ -1,5 +1,13 @@
 [
 	{
+		"title": "Predicting Hospitalization Costs",
+		"year": 2026,
+		"image": "hospital-and-surgery-costs.jpg",
+		"description": "Python pipeline to predict hospitalization costs across three stages (admission, post-admission, discharge) and newborn/non-newborn cohorts; aims to provide insights into cost drivers and improve resource allocation.",
+		"link": "https://github.com/alexisjacques/Predicting-Hospitalization-Costs/tree/main/capstone_project",
+		"cta": "View Project"
+	},
+	{
 		"title": "SLP Helper",
 		"year": 2025,
 		"image": "slptrackerimage.png",

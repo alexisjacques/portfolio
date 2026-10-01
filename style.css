@@ -226,6 +226,9 @@ button {
   width: 100%;
   height: auto;
   display: block;
+  /* uniform thumbnails so non-square images don't leave gaps */
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
 }
 
 .projects>article>p {
